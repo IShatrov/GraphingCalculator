@@ -20,6 +20,4 @@ abstract class ExpressionNode {
     }
 
     abstract double calculate(double x);
-
-    public abstract String toString();
 }

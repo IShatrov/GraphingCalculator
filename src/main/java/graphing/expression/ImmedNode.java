@@ -1,6 +1,6 @@
 package graphing.expression;
 
-public class ImmedNode extends ExpressionNode {
+class ImmedNode extends ExpressionNode {
     private final double val;
 
     ImmedNode(double val) {
@@ -9,9 +9,5 @@ public class ImmedNode extends ExpressionNode {
 
     double calculate(double x) {
         return val;
-    }
-    
-    public String toString() {
-        return String.valueOf(val);
     }
 }

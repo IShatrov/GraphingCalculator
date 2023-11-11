@@ -1,6 +1,6 @@
 package graphing.expression;
 
-public class UnaryFunctionNode extends ExpressionNode {
+class UnaryFunctionNode extends ExpressionNode {
     private final UnaryFunction func;
 
     UnaryFunctionNode(UnaryFunction func) {
@@ -9,9 +9,5 @@ public class UnaryFunctionNode extends ExpressionNode {
 
     double calculate(double x) {
         return func.calculation.applyAsDouble(left.calculate(x));
-    }
-
-    public String toString() {
-        return func.stringRepresentation;
     }
 }
