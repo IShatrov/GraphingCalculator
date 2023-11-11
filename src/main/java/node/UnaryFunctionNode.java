@@ -1,7 +1,11 @@
 package node;
 
 public class UnaryFunctionNode extends ExpressionNode {
-    UnaryFunction func;
+    private final UnaryFunction func;
+
+    UnaryFunctionNode(UnaryFunction func) {
+        this.func = func;
+    }
 
     double calculate(double x) {
         return func.calculation.applyAsDouble(left.calculate(x));
