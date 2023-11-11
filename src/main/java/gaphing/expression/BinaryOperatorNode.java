@@ -1,4 +1,4 @@
-package node;
+package gaphing.expression;
 
 public class BinaryOperatorNode extends ExpressionNode {
     private final BinaryOperator op;

@@ -1,4 +1,4 @@
-package node;
+package gaphing.expression;
 
 abstract class ExpressionNode {
     ExpressionNode left, right;

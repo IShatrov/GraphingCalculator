@@ -1,4 +1,4 @@
-package node.tree;
+package gaphing.expression;
 
 public class ExpressionTree {
 }

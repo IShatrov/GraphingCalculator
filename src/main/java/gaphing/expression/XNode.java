@@ -1,4 +1,4 @@
-package node;
+package gaphing.expression;
 
 public class XNode extends ExpressionNode {
     double calculate(double x) {

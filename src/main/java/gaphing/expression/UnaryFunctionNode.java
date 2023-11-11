@@ -1,4 +1,4 @@
-package node;
+package gaphing.expression;
 
 public class UnaryFunctionNode extends ExpressionNode {
     private final UnaryFunction func;

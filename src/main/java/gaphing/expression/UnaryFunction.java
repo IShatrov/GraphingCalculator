@@ -1,4 +1,4 @@
-package node;
+package gaphing.expression;
 
 import java.util.function.DoubleUnaryOperator;
 
