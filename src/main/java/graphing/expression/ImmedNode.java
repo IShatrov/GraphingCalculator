@@ -1,4 +1,4 @@
-package gaphing.expression;
+package graphing.expression;
 
 public class ImmedNode extends ExpressionNode {
     private final double val;

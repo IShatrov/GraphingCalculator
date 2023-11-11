@@ -1,4 +1,4 @@
-package gaphing.expression;
+package graphing.expression;
 
 import java.util.function.DoubleUnaryOperator;
 
