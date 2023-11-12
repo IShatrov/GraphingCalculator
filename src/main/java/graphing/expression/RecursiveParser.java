@@ -1,12 +1,14 @@
 package graphing.expression;
 
 public class RecursiveParser {
+    private static final String GRAPHVIZ_FILENAME = "graphviz.txt";
+
     public static ExpressionTree parse(String str) throws Exception {
         StringBuilder strNoWhitespaces = new StringBuilder(str.replaceAll(" ", ""));
 
         ExpressionTree ans = new ExpressionTree(getExpr(strNoWhitespaces));
 
-        ans.graphvizLog("test.txt");
+        ans.graphvizLog(GRAPHVIZ_FILENAME);
 
         if (!strNoWhitespaces.isEmpty()) {
             throw new Exception("Ending string not empty");
