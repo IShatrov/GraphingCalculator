@@ -1,6 +1,9 @@
 package graphing.plotter;
 
 import graphing.expression.ExpressionTree;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -50,4 +53,30 @@ public class TabulatedFunction {
             }
         }
     }
+
+    /**
+     * Writes x values
+     * @param writer FileWriter to write to
+     * @param sep separator
+     * @throws IOException when writing fails
+     */
+    public void writeX(FileWriter writer, String sep) throws IOException {
+        for (double x : xValues) {
+            writer.write(x + sep);
+        }
+    }
+
+    /**
+     * Writes y values
+     * @param writer FileWriter to write to
+     * @param sep separator
+     * @throws IOException when writing fails
+     */
+    public void writeY(FileWriter writer, String sep) throws IOException {
+        for (double y : yValues) {
+            writer.write(y + sep);
+        }
+    }
+
+
 }

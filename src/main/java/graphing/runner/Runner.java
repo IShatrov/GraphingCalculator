@@ -1,9 +1,26 @@
 package graphing.runner;
 
+import graphing.expression.ExpressionTree;
 import graphing.expression.RecursiveParser;
+import graphing.plotter.TabulatedFunction;
+
+import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) throws Exception {
-        RecursiveParser.parse("2^x");
+        Scanner scn = new Scanner(System.in);
+
+        System.out.println("Please write function to plot:");
+        String str = scn.nextLine();
+
+        System.out.println("Please enter xMin and xMax:");
+        double xMin = scn.nextDouble(), xMax = scn.nextDouble();
+
+        System.out.println("Please enter yMin and yMax:");
+        double yMin = scn.nextDouble(), yMax = scn.nextDouble();
+
+        ExpressionTree func = RecursiveParser.parse(str);
+
+        TabulatedFunction table = new TabulatedFunction(func, xMin, xMax, yMin, yMax);
     }
 }
