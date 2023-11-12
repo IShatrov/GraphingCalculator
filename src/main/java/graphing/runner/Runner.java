@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Runner {
-    private static String PYTHON_NAME = "plot.py";
+    private static final String PYTHON_NAME = "plot.py";
 
     public static void main(String[] args) throws Exception {
         Scanner scn = new Scanner(System.in);
