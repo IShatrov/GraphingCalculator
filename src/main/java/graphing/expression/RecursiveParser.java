@@ -6,6 +6,8 @@ public class RecursiveParser {
 
         ExpressionTree ans = new ExpressionTree(getExpr(strNoWhitespaces));
 
+        ans.graphvizLog("test.txt");
+
         if (!strNoWhitespaces.isEmpty()) {
             throw new Exception("Ending string not empty");
         }
@@ -32,7 +34,7 @@ public class RecursiveParser {
             i++;
 
             if (i >= str.length() || !Character.isDigit(str.charAt(i))) {
-                throw new NumberFormatException("Double missing fravtional part");
+                throw new NumberFormatException("Double missing fractional part");
             }
 
             while (i < str.length() && Character.isDigit(str.charAt(i))) {
@@ -47,7 +49,146 @@ public class RecursiveParser {
         return ans;
     }
 
-    private static ExpressionNode getExpr(StringBuilder str) {
-        return null;
+    private static ExpressionNode getExpr(StringBuilder str) throws Exception {
+        ExpressionNode left = getTerm(str);
+
+        if (!str.isEmpty() && (str.charAt(0) == '+' || str.charAt(0) == '-')) {
+            while (!str.isEmpty() && (str.charAt(0) == '+' || str.charAt(0) == '-')) {
+                char op = str.charAt(0);
+
+                str.deleteCharAt(0);
+
+                ExpressionNode tmp;
+
+                if (op == '+') {
+                    tmp = new BinaryOperatorNode(BinaryOperator.SUM);
+                } else {
+                    tmp = new BinaryOperatorNode(BinaryOperator.DIFF);
+                }
+
+                tmp.setLeft(left);
+                tmp.setRight(getTerm(str));
+
+                left = tmp;
+            }
+        }
+
+        return left;
+    }
+
+    private static ExpressionNode getTerm(StringBuilder str) throws Exception {
+        ExpressionNode left = getPow(str);
+
+        if (!str.isEmpty() && (str.charAt(0) == '*' || str.charAt(0) == '/')) {
+            char op = str.charAt(0);
+
+            str.deleteCharAt(0);
+
+            ExpressionNode right = getTerm(str);
+
+            ExpressionNode ans;
+
+            if (op == '*') {
+                ans = new BinaryOperatorNode(BinaryOperator.MULT);
+            } else {
+                ans = new BinaryOperatorNode(BinaryOperator.DIV);
+            }
+
+            ans.setLeft(left);
+            ans.setRight(right);
+
+            return ans;
+        }
+
+        return left;
+    }
+
+    private static ExpressionNode getPow(StringBuilder str) throws Exception {
+        ExpressionNode left = getPrim(str);
+
+        if (!str.isEmpty() && str.charAt(0) == '^') {
+            str.deleteCharAt(0);
+
+            ExpressionNode right = getPrim(str);
+
+            ExpressionNode ans = new BinaryOperatorNode(BinaryOperator.POW);
+
+            ans.setLeft(left);
+            ans.setRight(right);
+
+            return ans;
+        }
+
+        return left;
+    }
+
+    private static ExpressionNode getPrim(StringBuilder str) throws Exception {
+        if (str.charAt(0) == '(') {
+            str.deleteCharAt(0);
+
+            ExpressionNode ans = getExpr(str);
+
+            if (str.charAt(0) != ')') {
+                throw new Exception("Missing )");
+            }
+
+            str.deleteCharAt(0);
+
+            return ans;
+        }
+
+        return getUnary(str);
+    }
+
+    private static ExpressionNode getUnary(StringBuilder str) throws Exception {
+        int i = 0;
+
+        while (Character.isAlphabetic(str.charAt(i))) {
+            i++;
+        }
+
+        if (i == 0) {
+            return getImmed(str);
+        }
+
+        String unary = str.substring(0, i);
+
+        if (unary.equals("x")) {
+            str.deleteCharAt(0);
+
+            return new XNode();
+        }
+
+        for (UnaryFunction func : UnaryFunction.values()) {
+            if (unary.equals(func.stringRepresentation)) {
+                str.delete(0, i);
+
+                ExpressionNode ans = new UnaryFunctionNode(func);
+
+                ans.setLeft(getArg(str));
+
+                return ans;
+            }
+        }
+
+        throw new Exception("Unresolved function " + unary);
+    }
+
+    private static ExpressionNode getArg(StringBuilder str) throws Exception {
+        if (str.charAt(0) != '(') {
+            throw new Exception("Missing ( in argument");
+        }
+
+        str.deleteCharAt(0);
+
+        ExpressionNode ans = getExpr(str);
+
+        if (str.charAt(0) != ')') {
+            throw new Exception("Missing ) in argument");
+        }
+
+        str.deleteCharAt(0);
+
+        return ans;
     }
 }

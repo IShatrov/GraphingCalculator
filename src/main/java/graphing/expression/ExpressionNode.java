@@ -27,12 +27,12 @@ abstract class ExpressionNode {
     void graphvizWriteChildren(FileWriter writer) throws IOException {
         if (left != null) {
             writer.write("\t\"" + this.toString() + "\"->\"" + left.toString() + "\";\n");
-            left.graphvizLog(writer);
+            left.graphvizWriteChildren(writer);
         }
 
         if (right != null) {
             writer.write("\t\"" + this.toString() + "\"->\"" + right.toString() + "\";\n");
-            right.graphvizLog(writer);
+            right.graphvizWriteChildren(writer);
         }
 
         this.graphvizLog(writer);

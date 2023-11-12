@@ -27,11 +27,4 @@ public class ExpressionTree {
 
         writer.close();
     }
-
-    public ExpressionTree() {
-        root = new BinaryOperatorNode(BinaryOperator.SUM);
-
-        root.setLeft(new ImmedNode(5));
-        root.setRight(new XNode());
-    }
 }
