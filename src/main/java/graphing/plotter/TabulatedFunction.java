@@ -3,12 +3,24 @@ package graphing.plotter;
 import graphing.expression.ExpressionTree;
 import java.util.ArrayList;
 
+/**
+ * Tabulates function from xMin to xMax.
+ */
 public class TabulatedFunction {
     private static final int MAX_POINTS = 10_000;
 
     private final ArrayList<Double> xValues, yValues;
     private final double xMin, xMax, yMin, yMax;
 
+    /**
+     * Constructs TabulatedFunction with specified parameters.
+     * @param function function to tabulate
+     * @param xMin x to start tabulation from
+     * @param xMax x to finish tabulation at
+     * @param yMin min y for plot
+     * @param yMax max y for plot
+     * @throws ArithmeticException when xMin >= xMax or yMin >= yMax
+     */
     public TabulatedFunction(ExpressionTree function, double xMin, double xMax, double yMin, double yMax)
             throws ArithmeticException {
         if (xMin >= xMax) {
