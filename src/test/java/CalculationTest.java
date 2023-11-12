@@ -27,4 +27,14 @@ public class CalculationTest {
         assertEquals(0.708073418, trigonometry.calculate(0), EPSILON);
         assertEquals(2.825763090, trigonometry.calculate(1), EPSILON);
     }
+
+    @Test
+    public void exponentialTest() throws Exception {
+        ExpressionTree exponential = RecursiveParser.parse("2^x");
+        assertEquals(1, exponential.calculate(0), EPSILON);
+        assertEquals(2, exponential.calculate(1), EPSILON);
+        assertEquals(0.5, exponential.calculate(-1), EPSILON);
+        assertEquals(8, exponential.calculate(3), EPSILON);
+        assertEquals(5.6568542495, exponential.calculate(2.5), EPSILON);
+    }
 }
