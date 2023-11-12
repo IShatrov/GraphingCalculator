@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Runner {
+    private static String PYTHON_NAME = "plot.py";
+
     public static void main(String[] args) throws Exception {
         Scanner scn = new Scanner(System.in);
 
@@ -25,9 +27,7 @@ public class Runner {
 
         TabulatedFunction table = new TabulatedFunction(func, xMin, xMax, yMin, yMax);
 
-        table.writeX(new FileWriter("rr.txt"), " ");
-
-        FileWriter writer = new FileWriter("test.py");
+        FileWriter writer = new FileWriter(PYTHON_NAME);
 
         PlotBuilder.plot(writer, table);
 
