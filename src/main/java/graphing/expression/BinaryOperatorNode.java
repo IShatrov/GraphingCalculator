@@ -15,6 +15,6 @@ class BinaryOperatorNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write("\t\"" + this.toString() + "\"[label = \"{" + this.toString() + " |op: " + op.stringRepresentation + "|}\"];\n\n");
+        writer.write(getGraphvizLabel("op: " + op.stringRepresentation));
     }
 }

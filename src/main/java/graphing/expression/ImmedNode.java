@@ -15,6 +15,6 @@ class ImmedNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write("\t\"" + this.toString() + "\"[label = \"{" + this.toString() + " |val: " + val + "|}\"];\n\n");
+        writer.write(getGraphvizLabel("val: " + val));
     }
 }

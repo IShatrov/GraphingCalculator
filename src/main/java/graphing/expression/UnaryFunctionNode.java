@@ -15,6 +15,6 @@ class UnaryFunctionNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write("\t\"" + this.toString() + "\"[label = \"{" + this.toString() + " |func: " + func.stringRepresentation + "|}\"];\n\n");
+        writer.write(getGraphvizLabel("func: " + func.stringRepresentation));
     }
 }

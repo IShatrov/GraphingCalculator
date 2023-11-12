@@ -38,5 +38,9 @@ abstract class ExpressionNode {
         this.graphvizLog(writer);
     }
 
+    String getGraphvizLabel(String label) {
+        return "\t\"" + this.toString() + "\"[label = \"{" + this.toString() + " |" + label + "}\"];\n\n";
+    }
+
     abstract void graphvizLog(FileWriter writer) throws IOException;
 }

@@ -9,6 +9,6 @@ class XNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write("\t\"" + this.toString() + "\"[label = \"{" + this.toString() + " |x|}\"];\n\n");
+        writer.write(getGraphvizLabel("x"));
     }
 }
