@@ -145,7 +145,7 @@ public class RecursiveParser {
     private static ExpressionNode getUnary(StringBuilder str) throws Exception {
         int i = 0;
 
-        while (Character.isAlphabetic(str.charAt(i))) {
+        while (i < str.length() && Character.isAlphabetic(str.charAt(i))) {
             i++;
         }
 
