@@ -17,3 +17,6 @@ This program supports the following functions:
 * Natural logarithm (ln)
 * Exponent (exp)
 * Square root (sqrt)
+## Tree example
+This program parses a mathematical expression into a syntax tree. Below is an example of a syntax tree for expression 2*x*sin(x - 1) + ln(x + 2) generated with [graphviz](https://dreampuf.github.io/GraphvizOnline).
+![tree_example](screenshots/tree.png)
