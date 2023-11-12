@@ -2,8 +2,10 @@ package graphing.runner;
 
 import graphing.expression.ExpressionTree;
 import graphing.expression.RecursiveParser;
+import graphing.plotter.PlotBuilder;
 import graphing.plotter.TabulatedFunction;
 
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Runner {
@@ -22,5 +24,13 @@ public class Runner {
         ExpressionTree func = RecursiveParser.parse(str);
 
         TabulatedFunction table = new TabulatedFunction(func, xMin, xMax, yMin, yMax);
+
+        table.writeX(new FileWriter("rr.txt"), " ");
+
+        FileWriter writer = new FileWriter("test.py");
+
+        PlotBuilder.plot(writer, table);
+
+        writer.close();
     }
 }

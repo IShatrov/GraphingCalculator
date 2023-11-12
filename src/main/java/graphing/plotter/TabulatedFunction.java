@@ -54,6 +54,22 @@ public class TabulatedFunction {
         }
     }
 
+    public double getxMin() {
+        return xMin;
+    }
+
+    public double getxMax() {
+        return xMax;
+    }
+
+    public double getyMin() {
+        return yMin;
+    }
+
+    public double getyMax() {
+        return yMax;
+    }
+
     /**
      * Writes x values
      * @param writer FileWriter to write to
