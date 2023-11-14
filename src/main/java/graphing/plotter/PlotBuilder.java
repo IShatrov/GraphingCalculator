@@ -11,16 +11,12 @@ public class PlotBuilder {
     private static void prepareFile(FileWriter writer, TabulatedFunction func) throws IOException {
         writer.write("import matplotlib.pyplot as plt\n\n" +
                         "fig = plt.subplot()\n" +
-                        "x = ["
+                        "x = [" + func.xString(", ")
                     );
-
-        func.writeX(writer, ", ");
 
         writer.write("]\n" +
-                        "y = ["
+                        "y = [" + func.yString(", ")
                     );
-
-        func.writeY(writer, ", ");
 
         writer.write("]\n" +
                         "fig.plot(list(x), list(y), linestyle=\"None\",  marker=\".\", markersize=1)\n" +
