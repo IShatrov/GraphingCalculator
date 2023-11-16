@@ -10,22 +10,6 @@ abstract class ExpressionNode {
     ExpressionNode left, right;
 
     /**
-     * A getter method for left child.
-     * @return left child
-     */
-    ExpressionNode getLeft() {
-        return left;
-    }
-
-    /**
-     * A getter method for right child.
-     * @return right child
-     */
-    ExpressionNode getRight() {
-        return right;
-    }
-
-    /**
      * A setter method for left child.
      * @param target node to be set as left child
      */
