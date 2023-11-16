@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Node that contains an unary function like sin and ln.
+ * Node that contains a unary function like sin and ln.
  */
 class UnaryFunctionNode extends ExpressionNode {
     private final UnaryFunction func;
