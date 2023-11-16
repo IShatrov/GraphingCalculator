@@ -14,6 +14,6 @@ enum BinaryOperator {
         stringRepresentation = str;
     }
 
-    DoubleBinaryOperator calculation;
-    String stringRepresentation;
+    final DoubleBinaryOperator calculation;
+    final String stringRepresentation;
 }
