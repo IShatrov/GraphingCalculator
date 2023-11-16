@@ -1,9 +1,12 @@
 package graphing.expression;
 
+import java.io.IOException;
+
 public class RecursiveParser {
     private static final String GRAPHVIZ_FILENAME = "graphviz.txt";
 
-    public static ExpressionTree parse(String str) throws Exception {
+    public static ExpressionTree parse(String str)
+            throws IllegalArgumentException, IOException {
         StringBuilder strNoWhitespaces = new StringBuilder(str.replaceAll(" ", ""));
 
         ExpressionTree ans = new ExpressionTree(getExpr(strNoWhitespaces));
@@ -11,7 +14,7 @@ public class RecursiveParser {
         ans.graphvizLog(GRAPHVIZ_FILENAME);
 
         if (!strNoWhitespaces.isEmpty()) {
-            throw new Exception("Ending string not empty");
+            throw new IllegalArgumentException("Ending string not empty");
         }
 
         return ans;
@@ -51,7 +54,7 @@ public class RecursiveParser {
         return ans;
     }
 
-    private static ExpressionNode getExpr(StringBuilder str) throws Exception {
+    private static ExpressionNode getExpr(StringBuilder str) throws IllegalArgumentException {
         ExpressionNode left = getTerm(str);
 
         if (!str.isEmpty() && (str.charAt(0) == '+' || str.charAt(0) == '-')) {
@@ -78,7 +81,7 @@ public class RecursiveParser {
         return left;
     }
 
-    private static ExpressionNode getTerm(StringBuilder str) throws Exception {
+    private static ExpressionNode getTerm(StringBuilder str) throws IllegalArgumentException {
         ExpressionNode left = getPow(str);
 
         if (!str.isEmpty() && (str.charAt(0) == '*' || str.charAt(0) == '/')) {
@@ -105,7 +108,7 @@ public class RecursiveParser {
         return left;
     }
 
-    private static ExpressionNode getPow(StringBuilder str) throws Exception {
+    private static ExpressionNode getPow(StringBuilder str) throws IllegalArgumentException {
         ExpressionNode left = getPrim(str);
 
         if (!str.isEmpty() && str.charAt(0) == '^') {
@@ -124,14 +127,14 @@ public class RecursiveParser {
         return left;
     }
 
-    private static ExpressionNode getPrim(StringBuilder str) throws Exception {
+    private static ExpressionNode getPrim(StringBuilder str) throws IllegalArgumentException {
         if (str.charAt(0) == '(') {
             str.deleteCharAt(0);
 
             ExpressionNode ans = getExpr(str);
 
             if (str.charAt(0) != ')') {
-                throw new Exception("Missing )");
+                throw new IllegalArgumentException("Missing )");
             }
 
             str.deleteCharAt(0);
@@ -142,7 +145,7 @@ public class RecursiveParser {
         return getUnary(str);
     }
 
-    private static ExpressionNode getUnary(StringBuilder str) throws Exception {
+    private static ExpressionNode getUnary(StringBuilder str) throws IllegalArgumentException {
         int i = 0;
 
         while (i < str.length() && Character.isAlphabetic(str.charAt(i))) {
@@ -173,12 +176,12 @@ public class RecursiveParser {
             }
         }
 
-        throw new Exception("Unresolved function " + unary);
+        throw new IllegalArgumentException("Unresolved function " + unary);
     }
 
-    private static ExpressionNode getArg(StringBuilder str) throws Exception {
+    private static ExpressionNode getArg(StringBuilder str) throws IllegalArgumentException {
         if (str.charAt(0) != '(') {
-            throw new Exception("Missing ( in argument");
+            throw new IllegalArgumentException("Missing ( in argument");
         }
 
         str.deleteCharAt(0);
@@ -186,7 +189,7 @@ public class RecursiveParser {
         ExpressionNode ans = getExpr(str);
 
         if (str.charAt(0) != ')') {
-            throw new Exception("Missing ) in argument");
+            throw new IllegalArgumentException("Missing ) in argument");
         }
 
         str.deleteCharAt(0);
