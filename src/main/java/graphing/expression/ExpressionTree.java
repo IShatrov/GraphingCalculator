@@ -13,7 +13,7 @@ public class ExpressionTree {
      * Constructs ExpressionTree with given root.
      * @param root node to set as root
      */
-    public ExpressionTree(ExpressionNode root) {
+    ExpressionTree(ExpressionNode root) {
         this.root = root;
     }
 
