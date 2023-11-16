@@ -37,7 +37,7 @@ public class ExpressionTree {
         writer.write("""
                 digraph dump
                 {
-                \tnode[shape = "record", style = "rounded"];
+                \tnode[shape = "record", style = "rounded, filled"];
 
                 """
         );

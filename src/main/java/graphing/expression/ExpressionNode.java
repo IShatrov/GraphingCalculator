@@ -54,10 +54,12 @@ abstract class ExpressionNode {
     /**
      * Generates a label of this node for graphviz log.
      * @param label text to add to the label
+     * @param color color of the node
+     * @see <a href="https://graphviz.org/doc/info/colors.html">graphviz documentation</a>
      * @return graphviz label
      */
-    String getGraphvizLabel(String label) {
-        return "\t\"" + this + "\"[label = \"{" + this + " |" + label + "}\"];\n\n";
+    String getGraphvizLabel(String label, String color) {
+        return "\t\"" + this + "\"[label = \"{" + this + " |" + label + "}\", fillcolor = " + color + "];\n\n";
     }
 
     /**

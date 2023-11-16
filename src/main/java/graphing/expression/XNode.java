@@ -7,6 +7,7 @@ import java.io.IOException;
  * Node that contains x - function argument.
  */
 class XNode extends ExpressionNode {
+    private static final String color = "deeppink";
 
     /**
      * Returns x.
@@ -18,6 +19,6 @@ class XNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write(getGraphvizLabel("X"));
+        writer.write(getGraphvizLabel("X", color));
     }
 }

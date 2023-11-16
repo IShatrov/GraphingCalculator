@@ -8,6 +8,7 @@ import java.io.IOException;
  */
 class ImmedNode extends ExpressionNode {
     private final double val;
+    private static final String color = "aquamarine";
 
     /**
      * Constructs ImmedNode with specified value.
@@ -27,6 +28,6 @@ class ImmedNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write(getGraphvizLabel("val: " + val));
+        writer.write(getGraphvizLabel("val: " + val, color));
     }
 }

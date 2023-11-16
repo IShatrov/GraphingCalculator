@@ -8,6 +8,7 @@ import java.io.IOException;
  */
 class UnaryFunctionNode extends ExpressionNode {
     private final UnaryFunction func;
+    private static final String color = "greenyellow";
 
     /**
      * Constructs UnaryFunctionNode with specified function.
@@ -27,6 +28,6 @@ class UnaryFunctionNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write(getGraphvizLabel("func: " + func.stringRepresentation));
+        writer.write(getGraphvizLabel("func: " + func.stringRepresentation, color));
     }
 }

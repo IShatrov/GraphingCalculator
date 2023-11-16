@@ -8,6 +8,7 @@ import java.io.IOException;
  */
 class BinaryOperatorNode extends ExpressionNode {
     private final BinaryOperator op;
+    private static final String color = "cornsilk2";
 
     /**
      * Constructs BinaryOperatorNode with specified operator.
@@ -27,6 +28,6 @@ class BinaryOperatorNode extends ExpressionNode {
     }
 
     void graphvizLog(FileWriter writer) throws IOException {
-        writer.write(getGraphvizLabel("op: " + op.stringRepresentation));
+        writer.write(getGraphvizLabel("op: " + op.stringRepresentation, color));
     }
 }
