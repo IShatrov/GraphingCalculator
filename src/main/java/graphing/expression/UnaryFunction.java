@@ -19,6 +19,6 @@ public enum UnaryFunction {
         return calculation.applyAsDouble(num);
     }
 
-    DoubleUnaryOperator calculation;
-    String stringRepresentation;
+    final DoubleUnaryOperator calculation;
+    final String stringRepresentation;
 }
