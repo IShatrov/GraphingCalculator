@@ -39,12 +39,12 @@ abstract class ExpressionNode {
      */
     void graphvizWriteChildren(FileWriter writer) throws IOException {
         if (left != null) {
-            writer.write("\t\"" + this.toString() + "\"->\"" + left.toString() + "\";\n");
+            writer.write("\t\"" + this + "\"->\"" + left + "\";\n");
             left.graphvizWriteChildren(writer);
         }
 
         if (right != null) {
-            writer.write("\t\"" + this.toString() + "\"->\"" + right.toString() + "\";\n");
+            writer.write("\t\"" + this + "\"->\"" + right + "\";\n");
             right.graphvizWriteChildren(writer);
         }
 
@@ -57,7 +57,7 @@ abstract class ExpressionNode {
      * @return graphviz label
      */
     String getGraphvizLabel(String label) {
-        return "\t\"" + this.toString() + "\"[label = \"{" + this.toString() + " |" + label + "}\"];\n\n";
+        return "\t\"" + this + "\"[label = \"{" + this + " |" + label + "}\"];\n\n";
     }
 
     /**
