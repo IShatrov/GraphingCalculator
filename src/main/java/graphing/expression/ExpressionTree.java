@@ -20,7 +20,7 @@ public class ExpressionTree {
     /**
      * Calculates function at given point.
      * @param x point to calculate at
-     * @return
+     * @return calculated value
      */
     public double calculate(double x) {
         return root.calculate(x);
@@ -34,8 +34,12 @@ public class ExpressionTree {
     public void graphvizLog(String filename) throws IOException {
         FileWriter writer = new FileWriter(filename);
 
-        writer.write("digraph dump\n{\n\t" +
-                        "node[shape = \"record\", style = \"rounded\"];\n\n"
+        writer.write("""
+                digraph dump
+                {
+                \tnode[shape = "record", style = "rounded"];
+
+                """
         );
 
         root.graphvizWriteChildren(writer);
