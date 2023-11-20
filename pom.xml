@@ -23,6 +23,7 @@
     </dependencies>
 
     <build>
+        <finalName>GraphingCalculator</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
