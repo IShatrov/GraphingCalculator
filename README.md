@@ -20,7 +20,7 @@ This program supports the following functions:
 ## Running the program
 To run the program, compile it using pom from the repository. Resulting .jar file can be executed with the following command:
 ```
-java -jar GraphingCalculator-1.0-SNAPSHOT.jar
+java -jar GraphingCalculator.jar
 ```
 The program generates a python script that can be run by the following command:
 ```
