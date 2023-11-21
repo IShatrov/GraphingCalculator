@@ -18,13 +18,9 @@ This program supports the following functions:
 * Exponent (exp)
 * Square root (sqrt)
 ## Running the program
-To run the program, compile it using pom from the repository. Resulting .jar file can be executed with the following command:
+To run the program, execute it with the following command:
 ```
 java -jar GraphingCalculator.jar
-```
-The program generates a python script that can be run by the following command:
-```
-python plot.py
 ```
 ![running_example](screenshots/running.png)
 ## Tree example
