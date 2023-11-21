@@ -27,6 +27,7 @@ public class GUIBuilder {
     private static final String Y_MAX_LABEL = "y max";
     private static final int N_COLUMNS = 10;
     private static final String DEFAULT_FUNCTION = "0";
+    private static final String ERROR_TITLE = "Error";
 
     private final JFrame frame;
     private final JTextField functionTextField;
@@ -121,8 +122,12 @@ public class GUIBuilder {
             frame.repaint();
             frame.setVisible(true);
         } catch (Exception ex) {
-            System.out.println("aaa");
+            errorPopup(ex.getMessage(), ERROR_TITLE);
         }
+    }
+
+    public static void errorPopup(String infoMessage, String title) {
+        JOptionPane.showMessageDialog(null, infoMessage, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
     class TextFieldListener implements ActionListener {
