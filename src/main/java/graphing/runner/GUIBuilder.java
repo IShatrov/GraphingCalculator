@@ -30,6 +30,10 @@ public class GUIBuilder {
 
     private final JFrame frame;
     private final JTextField functionTextField;
+    private final JTextField xMinTextField;
+    private final JTextField xMaxTextField;
+    private final JTextField yMinTextField;
+    private final JTextField yMaxTextField;
 
     private JLabel picture;
 
@@ -39,12 +43,17 @@ public class GUIBuilder {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         functionTextField = new JTextField(DEFAULT_FUNCTION);
-        functionTextField.addActionListener(new FunctionTextFieldListener());
+        functionTextField.addActionListener(new TextFieldListener());
 
-        JTextField xMinTextField = new JTextField(String.valueOf(DEFAULT_X_MIN));
-        JTextField xMaxTextField = new JTextField(String.valueOf(DEFAULT_X_MAX));
-        JTextField yMinTextField = new JTextField(String.valueOf(DEFAULT_Y_MIN));
-        JTextField yMaxTextField = new JTextField(String.valueOf(DEFAULT_Y_MAX));
+        xMinTextField = new JTextField(String.valueOf(DEFAULT_X_MIN));
+        xMaxTextField = new JTextField(String.valueOf(DEFAULT_X_MAX));
+        yMinTextField = new JTextField(String.valueOf(DEFAULT_Y_MIN));
+        yMaxTextField = new JTextField(String.valueOf(DEFAULT_Y_MAX));
+
+        xMinTextField.addActionListener(new TextFieldListener());
+        xMaxTextField.addActionListener(new TextFieldListener());
+        yMinTextField.addActionListener(new TextFieldListener());
+        yMaxTextField.addActionListener(new TextFieldListener());
 
         xMinTextField.setColumns(N_COLUMNS);
         xMaxTextField.setColumns(N_COLUMNS);
@@ -75,42 +84,50 @@ public class GUIBuilder {
         frame.setVisible(true);
     }
 
-    class FunctionTextFieldListener implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
-            try {
-                ExpressionTree func = RecursiveParser.parse(functionTextField.getText());
+    private void replot() {
+        try {
+            ExpressionTree func = RecursiveParser.parse(functionTextField.getText());
 
-                TabulatedFunction table = new TabulatedFunction(func, -5, 5, -5, 5);
+            double xMin = Double.parseDouble(xMinTextField.getText());
+            double xMax = Double.parseDouble(xMaxTextField.getText());
+            double yMin = Double.parseDouble(yMinTextField.getText());
+            double yMax = Double.parseDouble(yMaxTextField.getText());
 
-                FileWriter writer = new FileWriter(PYTHON_NAME);
+            TabulatedFunction table = new TabulatedFunction(func, xMin, xMax, yMin, yMax);
 
-                PlotBuilder.plot(writer, table, GRAPH_NAME);
+            FileWriter writer = new FileWriter(PYTHON_NAME);
 
-                writer.close();
+            PlotBuilder.plot(writer, table, GRAPH_NAME);
 
-                Runtime.getRuntime().exec("python " + PYTHON_NAME).waitFor();
+            writer.close();
 
-                FileInputStream file = new FileInputStream(GRAPH_NAME);
+            Runtime.getRuntime().exec("python " + PYTHON_NAME).waitFor();
 
-                BufferedImage pictureBuffer = ImageIO.read(file);
-                JLabel picLabel = new JLabel(new ImageIcon(pictureBuffer));
+            FileInputStream file = new FileInputStream(GRAPH_NAME);
 
-                file.close();
+            BufferedImage pictureBuffer = ImageIO.read(file);
+            JLabel picLabel = new JLabel(new ImageIcon(pictureBuffer));
 
-                if (picture != null) {
-                    frame.remove(picture);
-                }
-                
-                picture = picLabel;
-                frame.add(BorderLayout.CENTER, picLabel);
+            file.close();
 
-                frame.revalidate();
-                frame.repaint();
-                frame.setVisible(true);
-            } catch (Exception ex) {
-                System.out.println("aaa");
+            if (picture != null) {
+                frame.remove(picture);
             }
 
+            picture = picLabel;
+            frame.add(BorderLayout.CENTER, picLabel);
+
+            frame.revalidate();
+            frame.repaint();
+            frame.setVisible(true);
+        } catch (Exception ex) {
+            System.out.println("aaa");
+        }
+    }
+
+    class TextFieldListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            replot();
         }
     }
 }
