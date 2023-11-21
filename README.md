@@ -29,3 +29,8 @@ This program parses a mathematical expression into a syntax tree. Below is an ex
 ## Plot example
 The picture below shows a plot for expression 2*x*sin(x - 1) + ln(x + 2).
 ![plot_example](screenshots/plot.png)
+## Error examples
+This program can show error popups, there are some examples below.
+![error_bad_double](screenshots/error_bad_double.png)
+![error_bad_limit](screenshots/error_bad_limit.png)
+![error_unresolved_function](screenshots/error_unresolved_function.png)
