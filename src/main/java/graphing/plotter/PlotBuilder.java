@@ -4,11 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class PlotBuilder {
-    public static void plot(FileWriter writer, TabulatedFunction func) throws IOException {
-        prepareFile(writer, func);
-    }
-
-    private static void prepareFile(FileWriter writer, TabulatedFunction func) throws IOException {
+    public static void plot(FileWriter writer, TabulatedFunction func, String outputFilename) throws IOException {
         writer.write("import matplotlib.pyplot as plt\n\n" +
                         "fig = plt.subplot()\n" +
                         "x = [" + func.xString(", ")
@@ -32,6 +28,7 @@ public class PlotBuilder {
 
         writer.write("fig.set_xlim([" + func.getxMin() + ", " + func.getxMax() + "])\n" +
                         "fig.set_ylim([" + func.getyMin() + ", " + func.getyMax() + "])\n" +
-                        "plt.show()");
+                        "plt.savefig(\"" + outputFilename + "\")\n" +
+                        "plt.close()");
     }
 }
